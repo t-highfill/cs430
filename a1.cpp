@@ -24,12 +24,12 @@ int main(int argc, char** argv){
 		return 1;
 	}
 	std::ifstream input(argv[1]);
-	auto lines = parsePostScript<int>(input);
+	std::vector<Line2D<int> >* lines = new std::vector<Line2D<int> >(parsePostScript<int>(input));
 	input.close();
 	Image img(WIDTH, HEIGHT);
 	img.fill(WHITE);
-	auto end = lines.end();
-	for(auto itr=lines.begin(); itr!=end; itr++){
+	auto end = lines->end();
+	for(auto itr=lines->begin(); itr!=end; itr++){
 		Line2D<int>& line = *itr;
 		auto end2 = line.end();
 		for(auto itr2=line.begin(); itr2!=end2; itr2++){
